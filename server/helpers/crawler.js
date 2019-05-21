@@ -1,6 +1,6 @@
-import https from 'superagent';
-import DomParser from 'dom-parser';
-import jsDom from 'jsdom';
+const https = require('superagent');
+const DomParser = require('dom-parser');
+const jsDom = require('jsdom');
 
 const parser = new DomParser();
 const { JSDOM } = jsDom;
@@ -86,8 +86,89 @@ class Crawler {
         const dom = new JSDOM(ele.rawHTML);
         let movie_list = [];
         let count = 0;
-        // while (1) {
-        //     if (dom.window.document.getEle)
-        // }
+        while (1) {
+            if (dom.window.document.getElementsByTagName('select')[0][count] == undefined) {
+                break;
+            }
+            movie_list.push({
+                moveek_id: dom.window.document.getElementsByTagName('select')[0][count].getAttribute('value'),
+                name: dom.window.document.getElementsByTagName('select')[0][count].innerHTML
+            })
+            count++;
+        }
+        return movie_list;
+    }
+
+    async crawlImageURL() {
+        const res = await https.get('https://moveek.com/dang-chieu/');
+        const ele = parser.parseFromString(res.text, 'text/html');
+        const dom = new JSDOM(ele.rawHTML);
+        const allMovies = dom.window.document.querySelector('.row.grid');
+        const movieArray = [].slice.call(allMovies.children);
+        const list = [];
+
+        movieArray.forEach((movie) => {
+            const link = movie.querySelector('a');
+            const urlTail = link.getAttribute('href');
+            const name = link.getAttribute('title');
+            const urlImg = link.querySelector('img')
+                .getAttribute('data-secret')
+                .split(' ')[2];
+            list.push({
+                name,
+                urlTail,
+                urlImg
+            })
+        });
+        return list;
+    }
+
+    async crawlMovieInfo() {
+        const movieList = await this.crawlImageURL();
+        let list = [];
+
+        for (const movie of movieList) {
+            const res = await https.get(`https://moveek.com${movie.urlTail}`);
+            const ele = parser.parseFromString(res.text, 'text/html');
+            const dom = new JSDOM(ele.rawHTML);
+            const { document } = dom.window;
+
+            const moveek_id = document.querySelector('a[title="Soạn đánh giá"]')
+                .getAttribute('href').slice(12);
+
+            const info = [].slice.call(document.querySelector('.row.mb-3').querySelectorAll('.col.text-center.text-sm-left'));
+
+            const age_rated = (info.length >= 1)
+                ? info[info.length - 1].querySelectorAll('span')[1].innerHTML
+                : null;
+            const types = document.querySelector('.mb-0.text-muted.text-truncate').innerHTML
+                .replace(/ +?/g, '')
+                .replace(/\r?\n|\r/g, '')
+                .split('-')[1];
+            const duration = (info.length >= 2)
+                ? info[info.length - 2].querySelectorAll('span')[1].innerHTML.split(' ')[0]
+                : null;
+            const trailer_url = 'https://www.youtube.com/embed/' +
+                document.querySelector('.btn.btn-outline-light.btn-sm')
+                    .getAttribute('data-video-url');
+            const description = document.querySelector('.mb-3.text-justify').innerHTML;
+
+            const result = {
+                name: movie.name,
+                moveek_id,
+                age_rated,
+                imdb_rating: null,
+                types,
+                duration,
+                trailer_url,
+                image_url: movie.urlImg,
+                description
+            };
+            list.push(result);
+        }
+        return list;
     }
 }
+
+const crawler = new Crawler();
+module.exports = crawler;
