@@ -1,13 +1,36 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Project II _ mdb _ Dev",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/duypv98/project_ii/server"
+  },
+  "author": "DuyPV GoPro",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "concurrently": "^4.1.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dom-parser": "^0.1.6",
+    "express": "^4.17.0",
+    "express-session": "^1.16.1",
+    "fs": "0.0.1-security",
+    "jsdom": "^15.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.17.1",
+    "npm": "^6.9.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "request": "^2.88.0",
+    "superagent": "^5.0.5"
+  }
 }
