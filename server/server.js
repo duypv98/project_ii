@@ -16,6 +16,11 @@ app.use(express.static(__dirname + '/public'));
 app.use(cors());
 
 /*API Routes */
+app.use('/api', require('./routes/movies'));
+app.use('/api', require('./routes/cinemas'));
+app.use('/api', require('./routes/comments'));
+app.use('/api', require('./routes/showtimes'));
+app.use('/api/user', require('./routes/users'));
 /*404 ERROR*/
 app.use((req, res, next) => {
     const err = new Error('Not Found');
