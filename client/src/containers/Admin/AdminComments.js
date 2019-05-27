@@ -1,0 +1,113 @@
+import React, { Component } from 'react';
+import { Button, Card, CardBody, CardText } from 'mdbreact';
+import Rating from 'react-rating';
+import API from './../../services/apis'
+
+export default class AdminComments extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            comments: [],
+            selects: []
+        }
+    }
+
+    selectMovie = (val) => {
+        const movie_id = val.target.value;
+        this.fetchComments(movie_id)
+    }
+
+    renderComments = () => {
+        if (this.state.comments.length === 0) return <h2 style={{ color: "white" }}>Không có kết quả nào</h2>
+        return this.state.comments.map((comment) => (
+            <Comment comment={comment} />
+        ))
+    }
+
+    renderSelects = () => {
+        return this.state.selects.map((select) => (
+            <option value={select.movie_id}>{select.name}</option>
+        ))
+    }
+
+    fetchComments = (movie_id) => {
+        API.getComments(movie_id)
+            .then((res) => {
+                console.log(res);
+                this.setState({ comments: res })
+            })
+            .catch(err => console.log(err))
+    }
+
+    fetchSelects = () => {
+        API.getMovies()
+            .then(res => {
+                console.log(res);
+                this.setState({ selects: res })
+            })
+            .catch(err => console.log(err))
+    }
+
+    componentDidMount = () => {
+        this.fetchSelects();
+    }
+
+    render() {
+        return (
+            <div className="admin-comment">
+                <h1>Quản lý đánh giá</h1>
+                <select className="browser-default custom-select"
+                    onChange={this.selectMovie}>
+                    <option disabled>Chọn phim</option>
+                    {this.renderSelects()}
+                </select>
+                {this.renderComments()}
+            </div>
+        );
+    }
+}
+
+class Comment extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            comment: this.props.comment || {}
+        }
+    }
+
+    onDelete = () => {
+        const del = window.confirm("Are you sure to delete this review?");
+        if (del) {
+            API.deleteComment(this.state.comment.movie_id, this.state.comment.rate_id)
+                .then(res => {
+                    window.location.reload()
+                })
+                .catch(err => console.log(err))
+        }
+    }
+
+    render() {
+        return (
+            <Card className="comment-card">
+                <CardBody>
+                    <Rating
+                        initialRating={this.state.comment.point}
+                        readonly
+                        className="rating-stars small"
+                        emptySymbol="fa fa-star-o fa-2x"
+                        fullSymbol="fa fa-star fa-2x" />
+
+                    <div className="comment-name">
+                        {this.state.comment.name}
+                    </div>
+                    <hr />
+                    <CardText>
+                        {this.state.comment.comment}
+                    </CardText>
+                    <hr />
+                    <Button onClick={this.onDelete} color="danger" size="sm">Delete</Button>
+                </CardBody>
+            </Card>
+        )
+    }
+}
