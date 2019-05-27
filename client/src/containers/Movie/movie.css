@@ -1,0 +1,146 @@
+.movie-header {
+    width: 100%;
+    background-color: #2c3448;
+    color: white;
+}
+
+.movie-header-inner {
+    width: 100%;
+    max-width: 960px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 20px 20px;
+}
+
+.movie-img {
+    height: 300px;
+    width: 200px;
+    background-color: blueviolet;
+    margin-right: 20px;
+    overflow: hidden;
+}
+
+.movie-img>img {
+    width: 100%;
+}
+
+.movie-ctn {
+    width: 100%;
+    max-width: 960px;
+    margin: auto;
+}
+
+.movie-ctn h5 {
+    margin-top: 30px;
+}
+
+.movie-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 350px;
+}
+
+.movie-props {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.movie-prop {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    margin: 10px;
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.movie-prop>div {
+    font-size: 10px;
+    height: 10px;
+    line-height: 10px;
+}
+
+.movie-card {
+    width: 100%;
+    margin: 30px 0;
+}
+
+.trailer-iframe {
+    background-color: black;
+    width: 100%;
+    max-width: 900px;
+    height: 500px;
+    max-height: 60vw;
+    margin: auto;
+    display: block;
+}
+
+.rating-stars {
+    color: rgb(255, 211, 67);
+}
+
+.rate-form-input {
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 5px;
+    width: 90%;
+    max-width: 500px;
+    padding: 5px;
+    background-color: rgb(255, 248, 233);
+}
+
+textarea.rate-form-input {
+    height: 150px;
+}
+
+.movie-cine,
+.movie-cine-child {
+    margin-bottom: 10px;
+}
+
+.movie-cine-child .navbar-brand {
+    font-size: 15px;
+}
+
+.showtime-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.movie-showtime {
+    width: 60px;
+    height: 30px;
+    border: 1px dashed rgb(124, 124, 124);
+    border-radius: 10px;
+    margin: 5px;
+    text-align: center;
+}
+
+.movie-showtime.ended {
+    background-color: #ccc;
+    color: darkgrey !important;
+}
+
+.movie-hint {
+    height: 50px;
+}
+
+.movie-hint span {
+    height: 40px;
+    margin: 5px 10px;
+    min-width: 200px;
+    display: inline-block;
+}
+
+.movie-hint a {
+    padding: 5px;
+}

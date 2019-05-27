@@ -1,0 +1,93 @@
+.nav-custom {
+    /* width: 120px;
+    text-align: center; */
+    margin-right: 20px;
+}
+
+.drop-menu-custom {
+    width: 300px;
+}
+
+.brand-img {
+    height: 40px;
+}
+
+.nav-title {
+    font-size: 26px;
+    padding: 2px 0px;
+    font-weight: bold;
+    width: 170px;
+    text-align: center;
+}
+
+@media (max-width: 1200px) {
+    .nav-title {
+        display: none;
+    }
+}
+
+/* ------------------------ */
+
+.admin-container {
+    width: 100vw;
+    min-height: 100vh;
+}
+
+.admin-inner {
+    min-height: 70vh;
+    background-color: #222939;
+    padding: 20px;
+}
+
+.admin-inner h1 {
+    color: white;
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.admin-movie,
+.admin-function {
+    width: 90%;
+    max-width: 800px;
+    margin: 0px auto 30px auto;
+}
+
+.admin-table tr,
+.admin-table {
+    width: 100%;
+}
+
+.admin-table tr td {
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+.admin-table tr td:first-child {
+    width: 120px;
+}
+
+.admin-form-input {
+    width: 100%;
+    border: 1px solid #ccc;
+    margin: 0;
+    background-color: rgb(255, 254, 241);
+}
+
+textarea.admin-form-input {
+    height: 150px;
+}
+
+.admin-form-input.error {
+    background-color: rgb(255, 203, 203);
+}
+
+.admin-comment {
+    width: 90%;
+    max-width: 600px;
+    margin: 0px auto 30px auto;
+}
+
+.admin-comment .comment-card {
+    margin: 20px auto;
+}
