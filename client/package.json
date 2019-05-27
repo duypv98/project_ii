@@ -3,8 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "informed": "^2.7.4",
+    "mdbreact": "^4.15.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-location-picker": "^1.3.0",
+    "react-rating": "^1.7.2",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1"
   },
   "scripts": {
