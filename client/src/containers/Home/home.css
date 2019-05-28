@@ -1,0 +1,23 @@
+.home-carousel, .home-list {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.home-carousel .carousel-item {
+    height: 70vh !important;
+}
+
+@media (max-width: 1200px) {
+    .home-carousel {
+        margin-top: 0;
+    }
+}
+
+.capt {
+    background-color: #000000cc;
+    width: fit-content;
+    margin: auto;
+}

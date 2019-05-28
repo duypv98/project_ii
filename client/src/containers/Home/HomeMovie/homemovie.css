@@ -1,0 +1,43 @@
+.home-movie {
+    padding: 20px;
+}
+
+.home-movie-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    box-shadow: 1px 1px 20px 0px #00000047;
+    transition: all .2s ease-in-out;
+}
+
+.home-movie-inner:hover {
+    transform: scale(1.1);
+    box-shadow: 1px 1px 40px 0px #00000047;
+}
+
+.home-movie-img-ctn {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.home-movie-des-ctn {
+    position: absolute;
+    bottom: 0;
+    height: 80px;
+    width: 100%;
+    padding: 10px;
+    background-color: #cccccccc;
+}
+
+.home-movie-img {
+    width: 100%;
+    border-bottom: 1px #eeeeeeee solid;
+}
+
+h3.home-movie-des-title {
+    font-size: 15px;
+    font-weight: bold;
+    flex: 1;
+}
