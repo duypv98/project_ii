@@ -34,11 +34,11 @@ export default class Movie extends Component {
         return (!value) ? 'This field is required' : null;
     }
 
-    toggleCollapse = key => () => {
-        this.setState(prev = ({
-            [key]: !prev[key]
-        }))
-    }
+    // toggleCollapse = key => () => {
+    //     this.setState(prev = ({
+    //         [key]: !prev[key]
+    //     }))
+    // }
 
     onSubmitComment = (vals) => {
         API.postComment(this.state.movie_id, vals.name, vals.email, vals.comment, vals.point || 3)

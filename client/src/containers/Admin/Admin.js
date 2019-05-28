@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './admin.css';
 import { Navbar, NavbarBrand, NavbarNav, NavbarToggler, Collapse, NavItem, NavLink } from 'mdbreact';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import Footer from './../../components/Footer';
+import { Footer } from './../../components/Footer';
 import AdminComments from './AdminComments';
 import AdminMovies from './AdminMovies';
 import AdminTypes from './AdminTypes';
